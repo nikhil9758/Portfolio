@@ -8,6 +8,9 @@ import { Blogloader } from './Pages/SingleBlog';
 import SingleBlog from './Pages/SingleBlog';
 import Quiz from './Pages/Quiz';
 import TopicQuiz from './Pages/TopicQuiz';
+import QuizLayout from './Pages/QuizLayout';
+import { Provider } from 'react-redux';
+import store from './store';
 function App() {
   const router= createBrowserRouter([
       {
@@ -28,15 +31,22 @@ function App() {
         ]
       },{
         path:'/quiz',
-        element:<Quiz/>
-      },{
-        path: '/quiz/:id',
-        element: <TopicQuiz/>
+        element:<QuizLayout/>,
+        children:[{
+          index:true,
+          element:<Quiz/>,
+        },{
+          path:':id/:quizaction',
+          element:<TopicQuiz/>
+        }
+      ]
       }
   ])
   return (
     <div className="App">
+      <Provider store={store}>
         <RouterProvider router={router}/>
+      </Provider>
     </div>
   );
 }

@@ -23,6 +23,16 @@ export interface quizProps{
     name: string
 }
 
+export interface questionsprop{
+    id: number,
+    ques:string,
+    options: string[]
+}
+
+export interface quizquesprops{
+    id: number,
+    questions:questionsprop[]
+}
 export const QuizQuestions=[
     {
         id:1,
@@ -34,17 +44,17 @@ export const QuizQuestions=[
             },
             {
                 id:2,
-                ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+                ques:'let x = { b: 2, c: 3 };\n let y = Object.keys(x);\nconsole.log(y.length);',
                 options:['2','3','4','5']
             },
             {
                 id:3,
-                ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+                ques:'let x = { b: 3, c: 4 };\n let y = Object.keys(x);\nconsole.log(y.length);',
                 options:['2','3','4','5']
             },
             {
                 id:4,
-                ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+                ques:'let x = { b: 4, c: 5 };\n let y = Object.keys(x);\nconsole.log(y.length);',
                 options:['2','3','4','5']
             }
         ]
@@ -75,3 +85,31 @@ export const QuizQuestions=[
         ]
     }
 ]
+
+
+
+// body: JSON.stringify({
+//     id:1,
+//     questions:[
+//         {
+//             id:1,
+//             ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+//             options:['2','3','4','5']
+//         },
+//         {
+//             id:2,
+//             ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+//             options:['2','3','4','5']
+//         },
+//         {
+//             id:3,
+//             ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+//             options:['2','3','4','5']
+//         },
+//         {
+//             id:4,
+//             ques:'let x = { b: 1, c: 2 };\n let y = Object.keys(x);\nconsole.log(y.length);',
+//             options:['2','3','4','5']
+//         }
+//     ]
+// }
