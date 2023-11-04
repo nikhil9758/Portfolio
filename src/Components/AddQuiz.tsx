@@ -7,7 +7,7 @@ import { AppDispatch } from '../store'
 const AddQuiz = () => {
     const[showTextArea,setShowTextArea]=useState(false)
     // const[options,setOptions]=useState<string[]>([])
-    // const dispatch= useDispatch<AppDispatch>()
+    const dispatch= useDispatch<AppDispatch>()
     // const data= useSelector((state: any)=>state.reducer.data)
     // console.log(data)
     const[questionText,setQuestionText]=useState<questionsprop>({
@@ -33,22 +33,20 @@ const AddQuiz = () => {
         let res={...questionText,options:[...questionText.options,'']}
         setQuestionText(res)
     }
-    // const handleSubmitForm=useCallback((e:React.SyntheticEvent)=>{
-    //     e.preventDefault()
-    //     console.log("here.........",questionText)
-    //     axios.post('https://logindemo-a1d5e-default-rtdb.firebaseio.com/Quizes/quiz.json',questionText)
-    //     .then((res)=>{
-    //         console.log("refreshing...........")
-    //         debugger
-    //         // dispatch(fetchquestions())
-    //     })
-
-    // },[questionText])
+    const handleSubmitForm=(e:React.SyntheticEvent)=>{
+        e.preventDefault()
+        console.log("here.........",questionText)
+        axios.post('https://logindemo-a1d5e-default-rtdb.firebaseio.com/Quizes/quiz.json',questionText)
+        .then((res)=>{
+            console.log("refreshing...........")
+            debugger
+            dispatch(fetchquestions())
+        })
+    }
     const handlesubmit=(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         console.log("refreshing....")
-        debugger
-
+        
     }
   return (
     <form onSubmit={handlesubmit}>    
@@ -60,7 +58,7 @@ const AddQuiz = () => {
             {showTextArea&&<textarea rows={10} cols={150} name='question' className='border-[2px] border-neutral-600' onChange={handleOnTextChange}/>}
             <div>
                 AddOptions
-                <button onClick={handleClickOptions}>+</button>
+                <button  onClick={handleClickOptions}>+</button>
                 {
                     questionText.options.map((_,index)=>{
                         return(
@@ -70,7 +68,7 @@ const AddQuiz = () => {
                     })
                 }
             </div>
-            <button type='submit'>Submit</button>
+            <button type='submit' onClick={handleSubmitForm}>Submit</button>
         </div>
     </form>
   )

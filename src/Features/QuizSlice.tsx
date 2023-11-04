@@ -13,7 +13,7 @@ export const fetchquestions=createAsyncThunk('/fetchquestions',async()=>{
         ).then(response =>
             response.json())
             .then(d => {
-                debugger
+                
             console.log("inside thunk",Object.entries(d))
             let data=Object.entries(d).map((item)=>{
                     console.log(item[1])
